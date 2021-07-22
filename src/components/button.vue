@@ -7,7 +7,9 @@
             {'is-plain':plain},
             {'is-round':round},
             {'is-circle':circle},
+            {'is-disabled':disable},
         ]"
+        :disable = disable
     >
         <i v-if="icon" :class="[`din-${icon}`]"></i>
         <!-- 如果沒有傳入插槽 就隱藏,如果有傳插槽 就會有$slots.default默認值 --->
@@ -39,6 +41,10 @@ export default {
         icon:{
             type:String,
             default:''
+        },
+        disable:{
+            type:Boolean,
+            default:false
         }
     },
     components: {},
@@ -143,6 +149,9 @@ export default {
 // disabled屬性
 .din-button.is-disabled {
     cursor: no-drop;
+    background: rgb(224, 223, 223);
+    color: #9fa1a3;
+    border: rgb(224, 223, 223);
 }
 // din-button後只要包含 'din-icon-'並後面跟者span
 .din-button [class*=din-icon-]+span{
