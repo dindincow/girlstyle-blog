@@ -1,0 +1,23 @@
+
+@mixin button-type($color,$bgColor,$borderColor,$hoverColor) {
+    color:$color;
+    background-color: $bgColor;
+    border-color: $borderColor;
+    &:hover,
+    &:focus {
+        background: $hoverColor;
+        border-color: $hoverColor;
+        color: $color;
+    }
+}
+
+@mixin button-is-plain($color,$bgColor,$hoverBgColor,$borderColor) {
+    color: $color;
+    background: $bgColor;
+    &:hover,
+    &:focus {
+        background: $hoverBgColor;
+        border-color: $borderColor;
+        color: #fff;
+    }
+}
