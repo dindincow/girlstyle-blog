@@ -1,9 +1,9 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 2691838 */
-  src: url('iconfont.woff2?t=1626969559310') format('woff2'),
-       url('iconfont.woff?t=1626969559310') format('woff'),
-       url('iconfont.ttf?t=1626969559310') format('truetype');
-}
+    font-family: "iconfont"; /* Project id 2691838 */
+    src: url('iconfont.woff2?t=1627295597872') format('woff2'),
+         url('iconfont.woff?t=1627295597872') format('woff'),
+         url('iconfont.ttf?t=1627295597872') format('truetype');
+  }
 
 [class*='din-'] {
   font-family: "iconfont" !important;
@@ -11,6 +11,13 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.din-icon-eyes:before {
+    content: "\e7ae";
+}
+  
+.din-icon-zhekouquan:before {
+    content: "\f294";
 }
 
 .din-icon-close:before {

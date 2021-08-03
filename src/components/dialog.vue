@@ -1,24 +1,32 @@
 <template>
-    <div class="dialog_mask">
-        <div class="dialog">
-            <div class="dialog_header">
-                <div class="left">
-                    <i class="din-icon-Vector dialogicon"></i>
-                    <span>{{title}}</span>
+    <!---  @click.self 點自己才觸發事件，點子元素不觸發事件--->   
+    <transition name="fad">    
+        <div class="dialog_mask" v-show="visible" @click.self="handleClose">
+            <div class="dialog" :style="{width:width,top:top}">
+                <div class="dialog_header">
+                    <div class="left">
+                        <i class="din-icon-Vector dialogicon"></i>
+                        <slot name="title">
+                            <span>{{title}}</span>
+                        </slot>
+                    </div>
+                    <button @click="handleClose">
+                        <i class="din-icon-close"></i>
+                    </button>
                 </div>
-                <button>
-                    <i class="din-icon-close"></i>
-                </button>
-            </div>
-            <div class="dialog_body">
-                東京奧運開幕在即，21日有四名參賽者因為確診染新冠，奧運夢碎?
-            </div>
-            <div class="dialog_footer">
-                <din-button round>取 消</din-button>
-                <din-button round type="primary">確 認</din-button>
+                <div class="dialog_body">
+                    <!-- 默認插槽--->
+                    <slot></slot> 
+                </div>
+                <div class="dialog_footer" v-if="$slots.footer">
+                    <slot name="footer">
+                        <din-button round>取 消</din-button>
+                        <din-button round type="primary">確 認</din-button>
+                    </slot>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 <script>
 export default {
@@ -27,6 +35,25 @@ export default {
         title:{
             type:String,
             default:"提示"
+        },
+        width:{
+            type:String,
+            default:'50%'
+        },
+        top:{
+            type:String,
+            default:'15vh'
+        },
+        visible:{
+            type:Boolean,
+            default:false
+        }
+    },
+    methods:{
+        handleClose(){
+            console.log("QQQ");
+            // 更新父祖件 visible 屬性值
+            this.$emit('update:visible',false)
         }
     }
     
@@ -43,9 +70,8 @@ export default {
     background: rgba(0,0,0,0.5);
     overflow: auto;
     .dialog{
-        margin: 150px auto;
+        margin: auto;
         position: relative;
-        transform: translateY(50%);
         max-width: 450px;
         width: 80%;
         background: #fff;
@@ -72,6 +98,10 @@ export default {
                 border: 2px solid #504c4c;
                 font-size: 18px;
                 font-weight: 700;
+                cursor: pointer;
+                &:hover{
+                     background: rgb(216, 215, 215);
+                }
             }
 
         }
@@ -88,4 +118,22 @@ export default {
 
     }
 }
+
+
+.fad-enter-active {
+    animation: fad .3s;
+}
+.fad-leave-active {
+    animation: fad .3s reverse;
+}
+@keyframes fad {
+  0% {
+    opacity: 0;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
 </style>
